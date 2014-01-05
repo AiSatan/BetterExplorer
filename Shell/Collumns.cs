@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace BExplorer.Shell
 {
@@ -11,7 +12,7 @@ namespace BExplorer.Shell
 	/// Class containing definition for columns
 	/// </summary>
 	[Serializable]
-	public class Collumns
+	public class Collumns : GridViewColumn
 	{
 		public PROPERTYKEY pkey { get; set; }
 		public string Name { get; set; }

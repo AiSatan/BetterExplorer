@@ -301,7 +301,7 @@ namespace BExplorer.Shell
 				{
 					if (m.Msg == (int)WM.WM_PAINT || m.Msg == (int)WM.WM_CREATE || m.Msg == (int)WM.WM_LBUTTONUP || m.Msg == (int)WM.WM_LBUTTONDOWN || m.Msg == (int)WM.WM_KEYUP || m.Msg == (int)WM.WM_KEYDOWN)
 					{
-						//User32.SendMessage(m_ShellView.ShellListViewHandle, User32.WM_CHANGEUISTATE, User32.MAKELONG(1, 1), 0);
+						//User32.SendMessage(m_ShellView.ShellViewHandle, User32.WM_CHANGEUISTATE, User32.MAKELONG(1, 1), 0);
 					}
 					return true;
 				}

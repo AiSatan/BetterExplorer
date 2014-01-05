@@ -453,7 +453,7 @@ namespace BExplorer.Shell
         /// </returns>
         public IEnumerator<ShellItem> GetEnumerator()
         {
-            return GetEnumerator(SHCONTF.FOLDERS | SHCONTF.INCLUDEHIDDEN |
+            return GetEnumerator(SHCONTF.FOLDERS | SHCONTF.INCLUDEHIDDEN | SHCONTF.INCLUDESUPERHIDDEN |
                 SHCONTF.NONFOLDERS | SHCONTF.INIT_ON_FIRST_NEXT | SHCONTF.FASTITEMS | SHCONTF.ENABLE_ASYNC);
         }
 

@@ -821,7 +821,7 @@ namespace BExplorer.Shell
                     while (true)
                     {
 
-											Application.DoEvents();
+											System.Windows.Forms.Application.DoEvents();
                         Thread.Sleep(5);				//Application.DoEvents();
                         //while (waitingThumbnails.Count == 0)
                         //    Thread.Sleep(5);
@@ -944,7 +944,7 @@ namespace BExplorer.Shell
 				{
 					while (true)
 					{
-						Application.DoEvents();
+						System.Windows.Forms.Application.DoEvents();
 						Thread.Sleep(5);
 						//while (overlayQueue.Count == 0)
 						//{
@@ -984,7 +984,7 @@ namespace BExplorer.Shell
 				{
 					while (true)
 					{
-						Application.DoEvents();
+						System.Windows.Forms.Application.DoEvents();
 						Thread.Sleep(5);
 
 						//while (shieldQueue.Count == 0)

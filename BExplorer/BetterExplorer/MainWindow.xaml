@@ -13,6 +13,7 @@
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      xmlns:my2="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon"
                      xmlns:ni="http://www.hardcodet.net/taskbar"
+										 xmlns:Shell="clr-namespace:BExplorer.Shell;assembly=BExplorerShell"
                      Title="Better Explorer"
                      MinWidth="640"
                      MinHeight="480"
@@ -3119,7 +3120,7 @@
                 </Grid.ColumnDefinitions>
                 <Helper:NoFlickerWindowsFormsHost x:Name="ShellTreeHost" Grid.Column="0" Background="White"/>
                 <GridSplitter Grid.Column="1" Width="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="LightGray" DragDelta="GridSplitter_DragDelta"/>
-                <Helper:NoFlickerWindowsFormsHost x:Name="ShellViewHost" Grid.Column="2" Background="White"/>
+                <Shell:IShellViewEx x:Name="ShellView" Grid.Column="2"/>
             </Grid>
             <GridSplitter Grid.Row="2"
                     Grid.Column="1"
@@ -3232,7 +3233,7 @@
                   Minimum="48"
                   Style="{DynamicResource ZoomSliderStyle}"
                   ValueChanged="zoomSlider_ValueChanged"
-                  Value="16" />
+                  Value="16" SmallChange="1" LargeChange="1" />
                 </StackPanel>
             </Ribbon:StatusBarItem>
 

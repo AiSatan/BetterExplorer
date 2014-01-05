@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="BExplorer.Shell.IShellViewEx"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+						 xmlns:local="clr-namespace:BExplorer.Shell"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+	<UserControl.Resources>
+		<DataTemplate x:Key="IconsItemTemplate">
+			<Border CornerRadius="2" BorderBrush="Transparent" BorderThickness="1" Margin="0" HorizontalAlignment="Stretch" UseLayoutRounding="True">
+					<VirtualizingStackPanel Orientation="Vertical" Panel.ZIndex="0">
+						<Grid Height="{Binding Path=ShellIconSize, UpdateSourceTrigger=PropertyChanged}" Width="{Binding Path=ShellIconSize, UpdateSourceTrigger=PropertyChanged}">
+							<Image VerticalAlignment="Center" HorizontalAlignment="Center" Height="{Binding Path=ShellIconSize, UpdateSourceTrigger=PropertyChanged}" Width="{Binding Path=ShellIconSize, UpdateSourceTrigger=PropertyChanged}" Opacity="{Binding Path=IconOpacity}" RenderOptions.BitmapScalingMode="Fant">
+								<Image.Source>
+									<PriorityBinding FallbackValue="">
+										<Binding Path="Thumbnail" UpdateSourceTrigger="PropertyChanged" IsAsync="True"/>
+										<Binding Path="FallbackIcon" UpdateSourceTrigger="PropertyChanged"/>
+									</PriorityBinding>
+								</Image.Source>
+							</Image>
+						<Image Width="32" Height="32" HorizontalAlignment="Left" VerticalAlignment="Bottom" Panel.ZIndex="2" RenderOptions.BitmapScalingMode="Fant">
+							<Image.Source>
+								<PriorityBinding FallbackValue="">
+									<Binding Path="OverlayIcon" UpdateSourceTrigger="PropertyChanged" IsAsync="True"/>
+								</PriorityBinding>
+							</Image.Source>
+						</Image>
+						</Grid>
+						<TextBlock Text="{Binding Path=DisplayName}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Width="{Binding Path=LabelWidth, UpdateSourceTrigger=PropertyChanged}" Height="38" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Padding="5,0,5,0"/>
+					</VirtualizingStackPanel>
+				
+			</Border>
+		</DataTemplate>
+		<DataTemplate x:Key="TilesItemTemplate">
+				<VirtualizingStackPanel Orientation="Horizontal" UseLayoutRounding="True" HorizontalAlignment="Left" Width="176" SnapsToDevicePixels="True">
+				<Image Width="48" Height="48" HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="{Binding Path=IconOpacity}" UseLayoutRounding="True" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="Fant">
+					<Image.Source>
+						<PriorityBinding FallbackValue="">
+							<Binding Path="Thumbnail" UpdateSourceTrigger="PropertyChanged" IsAsync="True"/>
+							<Binding Path="FallbackIcon" UpdateSourceTrigger="PropertyChanged"/>
+						</PriorityBinding>
+					</Image.Source>
+				</Image>
+					<TextBlock Text="{Binding Path=DisplayName}" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Width="110" Height="19" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Left" Margin="3,0,3,0"/>
+				</VirtualizingStackPanel>
+		</DataTemplate>
+		
+		<DataTemplate x:Key="SmallItemTemplate">
+				<VirtualizingStackPanel Orientation="Horizontal" UseLayoutRounding="True" HorizontalAlignment="Left" Width="220" SnapsToDevicePixels="True">
+				<Image Width="16" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="{Binding Path=IconOpacity}" UseLayoutRounding="True" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="Fant">
+					<Image.Source>
+						<PriorityBinding FallbackValue="">
+							<Binding Path="Thumbnail" UpdateSourceTrigger="PropertyChanged" IsAsync="True"/>
+							<Binding Path="FallbackIcon" UpdateSourceTrigger="PropertyChanged"/>
+						</PriorityBinding>
+					</Image.Source>
+				</Image>
+					<TextBlock Text="{Binding Path=DisplayName}" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Width="200" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Left" Margin="3,0,3,0"/>
+				</VirtualizingStackPanel>
+		</DataTemplate>
+		<DataTemplate x:Key="DetailsItemTemplate">
+			<Border CornerRadius="2" BorderBrush="Transparent" BorderThickness="1" Margin="0" HorizontalAlignment="Stretch" UseLayoutRounding="True">
+				<VirtualizingStackPanel Orientation="Horizontal">
+					<Image VerticalAlignment="Center" HorizontalAlignment="Left" Height="16" Width="16" Stretch="None" RenderOptions.BitmapScalingMode="Fant">
+						<Image.Source>
+							<PriorityBinding FallbackValue="">
+								<Binding Path="Thumbnail" UpdateSourceTrigger="PropertyChanged" IsAsync="True"/>
+								<Binding Path="FallbackIcon" UpdateSourceTrigger="PropertyChanged"/>
+							</PriorityBinding>
+						</Image.Source>
+					</Image>
+					<TextBlock Text="{Binding Path=DisplayName}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" Padding="5,0,5,0"/>
+				</VirtualizingStackPanel>
+			</Border>
+		</DataTemplate>
+		<local:IconsView x:Key="iconView" 
+						 ItemTemplate="{StaticResource IconsItemTemplate}" 
+						 ItemWidth="{Binding Path=ItemWidth, UpdateSourceTrigger=PropertyChanged}" ItemHeight="{Binding Path=ItemHeight, UpdateSourceTrigger=PropertyChanged}">
+			<local:IconsView.Columns>
+				<GridViewColumn Header="Name" Width="75"/>
+			</local:IconsView.Columns>
+		</local:IconsView>
+		<local:IconsView x:Key="tilesView" 
+						 ItemTemplate="{StaticResource TilesItemTemplate}" 
+						 ItemWidth="176" ItemHeight="56">
+			<local:IconsView.Columns>
+				<GridViewColumn Header="Name" Width="75"/>
+			</local:IconsView.Columns>
+		</local:IconsView>
+		<local:IconsView x:Key="smallView" 
+						 ItemTemplate="{StaticResource SmallItemTemplate}" 
+						 ItemWidth="220" ItemHeight="24">
+			<local:IconsView.Columns>
+				<GridViewColumn Header="Name" Width="75"/>
+			</local:IconsView.Columns>
+		</local:IconsView>
+		<GridView x:Key="detailsView">
+			<GridViewColumn CellTemplate="{DynamicResource DetailsItemTemplate}" Header="Name" Width="200"/>
+		</GridView>
+	</UserControl.Resources>
+	<Grid>
+		<ListView x:Name="lv" ScrollViewer.HorizontalScrollBarVisibility="Auto"  SelectionChanged="lv_SelectionChanged" MouseDoubleClick="lv_MouseDoubleClick" SelectionMode="Extended" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.CacheLength="100" VirtualizingPanel.CacheLengthUnit="Item" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.IsVirtualizingWhenGrouping="True" VirtualizingPanel.ScrollUnit="Pixel" VirtualizingPanel.VirtualizationMode="Recycling" ItemsSource="{Binding Path=Items, UpdateSourceTrigger=PropertyChanged}" MouseRightButtonUp="lv_MouseRightButtonUp" ScrollViewer.CanContentScroll="True" ScrollViewer.PanningRatio="2.2" ScrollViewer.PanningDeceleration="0.2" ScrollViewer.IsDeferredScrollingEnabled="False">
+			<ListView.ItemContainerStyle>
+				<Style TargetType="ListViewItem">
+					<Setter Property="Margin"
+              Value="1" />
+				</Style>
+			</ListView.ItemContainerStyle>
+			<!--<ListView.GroupStyle>
+				<GroupStyle>
+					<GroupStyle.HeaderTemplate>
+						<DataTemplate>
+							<TextBlock FontSize="15" FontWeight="Bold" Text="{Binding Path=Name}"/>
+						</DataTemplate>
+					</GroupStyle.HeaderTemplate>
+				</GroupStyle>
+			</ListView.GroupStyle>-->
+			<ListView.Template>
+				<ControlTemplate>
+					<ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}" local:KineticBehaviour.HandleKineticScrolling="False">
+						<ItemsPresenter />
+					</ScrollViewer>
+				</ControlTemplate>
+			</ListView.Template>
+		</ListView>
+	</Grid>
+</UserControl>

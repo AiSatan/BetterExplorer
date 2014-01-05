@@ -496,7 +496,8 @@ namespace BExplorer.Shell.Interop
 		private BitmapSource GetBitmapSource(System.Windows.Size size)
 		{
 			//FIXME: fix the cache retrieval options
-			RetrievalOption = ShellThumbnailRetrievalOption.Default;
+			if ((formatOption & ShellThumbnailFormatOption.IconOnly) == ShellThumbnailFormatOption.IconOnly)
+				RetrievalOption = ShellThumbnailRetrievalOption.Default;
 			IntPtr hBitmap = GetHBitmap(size);
 
 			// return a System.Media.Imaging.BitmapSource

@@ -19,7 +19,7 @@ namespace BetterExplorer
           UxTheme.SetWindowTheme(lvColumns.Handle, "explorer", 0);
         }
 
-        ShellView BrowserControl;
+        IShellViewEx BrowserControl;
         public bool IsBeforeShow = true;
         protected override void WndProc(ref Message m)
         {
@@ -44,7 +44,7 @@ namespace BetterExplorer
           }
         }
 
-        public void PopulateAvailableColumns(List<Collumns> AvailableCols, ShellView ShellView, System.Windows.Point Location)
+        public void PopulateAvailableColumns(List<Collumns> AvailableCols, IShellViewEx ShellView, System.Windows.Point Location)
         {
           BrowserControl = ShellView;
           for (int i = 1; i < AvailableCols.Count; i++)
@@ -68,7 +68,7 @@ namespace BetterExplorer
           }
           Opacity = 0;
 					if (lvColumns.Items.Count > 0)
-						Show(ShellView);
+						Show();
           this.Location = new Point((int)Location.X, (int)Location.Y);
           //this.lvColumns.Sort(); //'this didn't do anything... lol.
           this.lvColumns.Sorting = SortOrder.Ascending;
